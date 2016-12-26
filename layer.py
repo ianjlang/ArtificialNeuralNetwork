@@ -38,7 +38,7 @@ class layer(object):
 
     def execute(self, x):
         return self.activation(np.dot(x, self.w) + self.b)
-    
+
     def activation(self, val):
         return val
 
