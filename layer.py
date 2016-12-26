@@ -2,20 +2,6 @@ import numpy as np
 
 class layer(object):
 
-    def activation(self, val):
-        return val
-
-    def activation_grad(self, val):
-        return np.ones_like(val)
-
-    def update(self, x, dx):
-        return x - (self.step * dx)
-
-    def firstdelta(self, expected):
-        if len(expected) == 1:
-            return self.outputs - expected
-        return [self.outputs[i] - expected[i] for i in range(len(expected))]
-
     def __init__(self, in_size, out_size, step = .01):
         self.w = 2 * np.random.random((in_size, out_size)) - 1
         self.b = np.random.random((1, out_size))
@@ -52,3 +38,17 @@ class layer(object):
 
     def execute(self, x):
         return self.activation(np.dot(x, self.w) + self.b)
+    
+    def activation(self, val):
+        return val
+
+    def activation_grad(self, val):
+        return np.ones_like(val)
+
+    def update(self, x, dx):
+        return x - (self.step * dx)
+
+    def firstdelta(self, expected):
+        if len(expected) == 1:
+            return self.outputs - expected
+        return [self.outputs[i] - expected[i] for i in range(len(expected))]
