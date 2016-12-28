@@ -2,7 +2,7 @@ import numpy as np
 
 class layer(object):
 
-    def __init__(self, in_size, out_size, step = .01, momentum = .01):
+    def __init__(self, in_size, out_size, step = .01, momentum = .9):
         self.w = 2 * np.random.random((in_size, out_size)) - 1
         self.b = np.random.random((1, out_size))
         self.count = 0
@@ -38,7 +38,7 @@ class layer(object):
         self.count = 0
         return newdelt.T
 
-    def execute(self, x):
+    def predict(self, x):
         return self.activation(np.dot(x, self.w) + self.b)
 
     def activation(self, val):
