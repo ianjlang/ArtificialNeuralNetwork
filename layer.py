@@ -57,13 +57,19 @@ class layer(object):
 
     def mse(self, expected):
         #returns non-array singular value for plotting
-        if len(expected) == 1:
+        try: 
             val = self.outputs - expected
-        else:
-            val = [self.outputs[i] - expected[i] for i in range(len(expected))]
+        except:
+            try:
+                val = [self.outputs[i] - expected[i] for i in range(len(expected))]
+            except:
+                raise("layers.mse error")
         return (np.sum(np.power(val, 2), axis = 0) / 2)[0][0]
 
     def firstdelta(self, expected):
-        if len(expected) == 1:
+        try:
             return self.outputs - expected
-        return [self.outputs[i] - expected[i] for i in range(len(expected))]
+        except:
+            try:
+                return [self.outputs[i] - expected[i] for i in range(len(expected))]
+            except: raise("layers.firstdelta error")

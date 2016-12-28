@@ -2,7 +2,7 @@ import numpy as np
 from layer import layer
 import matplotlib.pyplot as plt
 
-class network(object):
+class Network(object):
 
     def __init__(self, in_size, out_size, hidden_layers = []):
         hidden_layers.insert(0, in_size)
@@ -30,7 +30,7 @@ class network(object):
                 val = layer.forward(val)
             self.train_error.append(self.layers[-1].mse(out[i]))
             delta = self.layers[-1].firstdelta(out[i])
-            for layer in self.layers.reverse():
+            for layer in reversed(self.layers):
                 delta = layer.backward(delta)
         self.trained = True
 

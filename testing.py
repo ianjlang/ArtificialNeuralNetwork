@@ -1,6 +1,19 @@
 import numpy as np
 import layer as ann
+import network
 import matplotlib.pyplot as plt
+
+##### network.py #####
+
+def trainave()
+    raise("not implemented")
+
+
+
+
+
+
+##### layer.py #####
 
 def trainsum(layer):
     x = np.random.randint(low = 1, high = 10, size = (1000, 2))
