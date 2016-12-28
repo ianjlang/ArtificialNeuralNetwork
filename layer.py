@@ -25,7 +25,7 @@ class layer(object):
         bias = []
         for i in range(self.count):
             dag = np.multiply(delta[i], self.activation_grad(self.outputs[i]))
-            newdelts.append(np.dot(self.w, dag))
+            newdelts.append(np.dot(self.w, dag.T))
             weights.append(np.dot(self.inputs[i].T, dag))
             bias.append(dag)
         newdelt = sum(newdelts) / self.count

@@ -44,9 +44,9 @@ class Network(object):
             else:
                 val = data[i]
             for layer in self.layers:
-                val = layer.forward(val)
+                val = layer.predict(val)
             test_error.append(abs(val - out[i]) / val)
-        self.test_error = np.mean(self.test_error)
+        self.test_error = np.mean(test_error)
         return self.test_error
 
     def predict(self, data):
@@ -59,7 +59,7 @@ class Network(object):
             else:
                 val = data[i]
             for layer in self.layers:
-                val = layer.forward(val)
+                val = layer.predict(val)
             ret.append(val)
         return ret
 
