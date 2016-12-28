@@ -17,7 +17,7 @@ class Network(object):
                 raise("Layer size error")
             self.layers.append(layer(hidden_layers[i-1], hidden_layers[i]))
         self.train_error = []
-        self.test_error = []
+        self.test_error = None
         self.trained = False
 
     def train(self, data, out):
@@ -37,6 +37,7 @@ class Network(object):
     def test(self, data, out):
         if not self.trained:
             raise("Not yet trained")
+        test_error = []
         for i in range(0, len(data)):
             if len(data[i].shape) != 2:
                 val = np.reshape(data[i], (1, len(data[i])))
@@ -44,9 +45,9 @@ class Network(object):
                 val = data[i]
             for layer in self.layers:
                 val = layer.forward(val)
-            self.test_error.append(self.layers[-1].mse(out[i]))
-        AverageError = np.mean(self.test_error)
-        return AverageError
+            test_error.append(abs(val - out[i]) / val)
+        self.test_error = np.mean(self.test_error)
+        return self.test_error
 
     def predict(self, data):
         if not self.trained:
