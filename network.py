@@ -62,7 +62,7 @@ class Network(object):
             ret.append(val)
         return ret
 
-    def graph(wtm = "train"):
+    def graph(self, wtm = "train"):
         if wtm.lower() == "train":
             if not self.trained:
                 raise("Not yet trained")

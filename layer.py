@@ -2,7 +2,7 @@ import numpy as np
 
 class layer(object):
 
-    def __init__(self, in_size, out_size, step = .01, momentum = .9):
+    def __init__(self, in_size, out_size, step = .001, momentum = .9):
         self.w = 2 * np.random.random((in_size, out_size)) - 1
         self.b = np.random.random((1, out_size))
         self.count = 0
@@ -36,6 +36,7 @@ class layer(object):
         self.inputs = []
         self.outputs = []
         self.count = 0
+        self.step *= .97
         return newdelt.T
 
     def predict(self, x):
@@ -57,7 +58,7 @@ class layer(object):
 
     def mse(self, expected):
         #returns non-array singular value for plotting
-        try: 
+        try:
             val = self.outputs - expected
         except:
             try:
